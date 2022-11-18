@@ -18,7 +18,6 @@ def get():
     return jsonify([{"k1":saida.k1, "k2":saida.k2}])
 
 @app.route("/")
-@app.route("/index")
 def index():
     print("K1 = {};  K2 = {};".format(saida.k1,saida.k2) )
     return render_template("index.html", k_1=saida.k1, k_2=saida.k2)
@@ -44,5 +43,5 @@ def saidas():
 
 
 
-if __name__=="__main__":
-    app.run()
+# if __name__=="__main__":
+#     app.run()
