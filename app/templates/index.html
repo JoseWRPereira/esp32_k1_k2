@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>SAEP2023</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+    <center>
+        <h1>SAEP 2023</h1><hr><br>
+        Saídas
+        <br><br>
+        <form action="/saidas">
+            {% if k_1: %}
+            <input type="checkbox" name="K1" value="1" checked>
+            {% else: %}
+            <input type="checkbox" name="K1" value="1">
+            {% endif %}
+            <label for="K1">K1</label><br>
+
+            {% if k_2: %}
+            <input type="checkbox" name="K2" value="1" checked >
+            {% else: %}
+            <input type="checkbox" name="K2" value="1">
+            {% endif %}
+            <label for="K2">K2</label><br>
+            <br>
+            <input type="submit" value="Atualizar">
+        </form>
+    </center>
+    </body>
+</html>
