@@ -10,7 +10,14 @@ class Saida():
     def __init__(self):
         self.k1 = 0
         self.k2 = 0
-
+    def get_k1(self):
+        return self.k1
+    def get_k2(self):
+        return self.k2
+    def set_k1(self, valor):
+        self.k1 = valor
+    def set_k2(self, valor):
+        self.k2 = valor
 
 saida = Saida()
 
@@ -18,7 +25,7 @@ saida = Saida()
 def get():
     # saida.k1 = session['k1']
     # saida.k2 = session['k2']
-    return jsonify([{"k1":saida.k1, "k2":saida.k2}])
+    return jsonify([{"k1":saida.get_k1(), "k2":saida.get_k2()}])
 
 @app.route("/")
 def init():
@@ -31,8 +38,8 @@ def init():
 def index():
     # saida.k1 = session['k1']
     # saida.k2 = session['k2']
-    print("K1 = {};  K2 = {};".format(saida.k1,saida.k2) )
-    return render_template("index.html", k_1=saida.k1, k_2=saida.k2)
+    print("K1 = {};  K2 = {};".format(saida.get_k1(),saida.get_k2()) )
+    return render_template("index.html", k_1=saida.get_k1(), k_2=saida.get_k2())
 
 
 @app.route("/saidas")
@@ -41,18 +48,18 @@ def saidas():
     t2 = request.args.get('K2')
 
     if t1==None: 
-        saida.k1 = 0
+        saida.set_k1(0)
     else:
-        saida.k1 = 1
+        saida.set_k1(1)
     # session['k1'] = saida.k1
 
     if t2==None:
-        saida.k2 = 0
+        saida.set_k2(0)
     else:
-        saida.k2 = 1
+        saida.set_k2(1)
     # session['k2'] = saida.k2
 
-    print("K1 = {};  K2 = {};".format(saida.k1,saida.k2) )
+    print("K1 = {};  K2 = {};".format(saida.get_k1(),saida.get_k2()) )
     return redirect(url_for('index'))
 
     # session.pop('k1', None)
