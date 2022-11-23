@@ -4,14 +4,12 @@ from flask import render_template, redirect, url_for, request
 from flask import session
 
 app = Flask(__name__)
-
+app.secret_key = 'k1k2'
 
 class Saida():
     def __init__(self):
         self.k1 = 0
         self.k2 = 0
-        session['k1'] = 0
-        session['k2'] = 0
 
 
 saida = Saida()
@@ -23,6 +21,13 @@ def get():
     return jsonify([{"k1":saida.k1, "k2":saida.k2}])
 
 @app.route("/")
+def init():
+    session['k1'] = 0
+    session['k2'] = 0
+    return redirect(url_for('index'))
+
+
+@app.route("/index")
 def index():
     saida.k1 = session['k1']
     saida.k2 = session['k2']
@@ -50,6 +55,7 @@ def saidas():
     print("K1 = {};  K2 = {};".format(saida.k1,saida.k2) )
     return redirect(url_for('index'))
 
+    # session.pop('k1', None)
 
 
 # if __name__=="__main__":
