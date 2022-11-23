@@ -16,21 +16,21 @@ saida = Saida()
 
 @app.route("/get")
 def get():
-    saida.k1 = session['k1']
-    saida.k2 = session['k2']
+    # saida.k1 = session['k1']
+    # saida.k2 = session['k2']
     return jsonify([{"k1":saida.k1, "k2":saida.k2}])
 
 @app.route("/")
 def init():
-    session['k1'] = 0
-    session['k2'] = 0
+    # session['k1'] = 0
+    # session['k2'] = 0
     return redirect(url_for('index'))
 
 
 @app.route("/index")
 def index():
-    saida.k1 = session['k1']
-    saida.k2 = session['k2']
+    # saida.k1 = session['k1']
+    # saida.k2 = session['k2']
     print("K1 = {};  K2 = {};".format(saida.k1,saida.k2) )
     return render_template("index.html", k_1=saida.k1, k_2=saida.k2)
 
@@ -44,13 +44,13 @@ def saidas():
         saida.k1 = 0
     else:
         saida.k1 = 1
-    session['k1'] = saida.k1
+    # session['k1'] = saida.k1
 
     if t2==None:
         saida.k2 = 0
     else:
         saida.k2 = 1
-    session['k2'] = saida.k2
+    # session['k2'] = saida.k2
 
     print("K1 = {};  K2 = {};".format(saida.k1,saida.k2) )
     return redirect(url_for('index'))
